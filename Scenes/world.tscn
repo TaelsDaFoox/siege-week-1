@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cs4ecsdbry7k5"]
+
+[node name="World" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
