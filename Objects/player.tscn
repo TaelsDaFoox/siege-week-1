@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://d0ibdpt0gyla1"]
+[gd_scene load_steps=4 format=3 uid="uid://d0ibdpt0gyla1"]
 
-[node name="Player" type="CharacterBody3D"]
+[ext_resource type="Script" uid="uid://bx5fo53uhfbbq" path="res://Objects/player.gd" id="1_y0qk3"]
+[ext_resource type="PackedScene" uid="uid://bxklavnbtgldy" path="res://Models/chaosino character.glb" id="2_3y5cq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y0qk3"]
+height = 1.9958496
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+collision_layer = 2
+script = ExtResource("1_y0qk3")
+_moveSpeed = 15
+camera = NodePath("SpringArm3D/Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.005493164, 0)
+shape = SubResource("CapsuleShape3D_y0qk3")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.94141155, 0.3372595, 0, -0.3372595, 0.94141155, 0, 0, 0)
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9935045, -0.11379268, 0, 0.11379268, 0.9935045, 0, 0, 0)
+
+[node name="PlayerModel" parent="." instance=ExtResource("2_3y5cq")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, -1.0079038, 0)

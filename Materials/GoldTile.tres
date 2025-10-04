@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://8x4dgeglvg0t"]
+
+[ext_resource type="Texture2D" uid="uid://cq07jchvpk7oc" path="res://Textures/goldtile.png" id="1_euijn"]
+
+[resource]
+albedo_texture = ExtResource("1_euijn")
+metallic_specular = 0.0
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true

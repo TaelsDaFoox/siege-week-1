@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bpnlwyonvb23q"]
+
+[ext_resource type="Texture2D" uid="uid://cebk0om8hkr2b" path="res://Textures/coinsurface.png" id="1_5o4v7"]
+
+[resource]
+albedo_texture = ExtResource("1_5o4v7")
+metallic_specular = 0.0
+uv1_scale = Vector3(0.15, 0.15, 0.15)
+uv1_triplanar = true

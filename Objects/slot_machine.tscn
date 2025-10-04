@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6cagy2li8ewg"]
+
+[ext_resource type="Script" uid="uid://bs45m745rw5js" path="res://Objects/slot_machine.gd" id="1_fddfx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f3ixr"]
+size = Vector3(2.0075684, 3.4902954, 2.010376)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f3ixr"]
+height = 3.472168
+radius = 2.7788086
+
+[node name="SlotMachine" type="Node3D"]
+script = ExtResource("1_fddfx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+size = Vector3(2, 3.5, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0018310547, 8.6426735e-07, 0.0022583008)
+shape = SubResource("BoxShape3D_f3ixr")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0061035156, 0)
+shape = SubResource("CylinderShape3D_f3ixr")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

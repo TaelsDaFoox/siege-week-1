@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmpcjyao35h1"]
+
+[ext_resource type="Script" uid="uid://dj8b3yuo1pqlv" path="res://slotmachine.gd" id="1_1siyn"]
+[ext_resource type="Texture2D" uid="uid://bu0jtynllvnge" path="res://Textures/slot1.png" id="2_275j3"]
+
+[node name="SlotMachineUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1siyn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Slot1" type="Sprite2D" parent="."]
+position = Vector2(220, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_275j3")
+
+[node name="Slot2" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_275j3")
+
+[node name="Slot3" type="Sprite2D" parent="."]
+position = Vector2(420, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_275j3")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
