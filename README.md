@@ -1,4 +1,6 @@
-# LET'S GO GAMBLING!!
+# Chaosino
+
+LET'S GO GAMBLING!!
 
 created for hack club siege
 
