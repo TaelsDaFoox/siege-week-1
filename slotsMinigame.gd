@@ -13,6 +13,8 @@ func _on_timer_timeout() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("SlotStop"):
+		if currentSlotNum==0:
+			PlayerGlobalManager.coins-=10
 		slotCheat()
 		currentSlotNum+=1
 		if currentSlotNum == slots.size():
