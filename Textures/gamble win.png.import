@@ -2,19 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk5folmoorqwt"
-path="res://.godot/imported/slot machine_gambling sign.png-e46df93a3df2ecc774769b07e76400ea.ctex"
+uid="uid://chqghqka1ul5v"
+path="res://.godot/imported/gamble win.png-b0fe0c0c8b78754627755529f964351e.ctex"
 metadata={
 "vram_texture": false
-}
-generator_parameters={
-"md5": "3167275c22b2dfe7e6cdba0e9d3fcbdf"
 }
 
 [deps]
 
-source_file="res://Models/slot machine_gambling sign.png"
-dest_files=["res://.godot/imported/slot machine_gambling sign.png-e46df93a3df2ecc774769b07e76400ea.ctex"]
+source_file="res://Textures/gamble win.png"
+dest_files=["res://.godot/imported/gamble win.png-b0fe0c0c8b78754627755529f964351e.ctex"]
 
 [params]
 

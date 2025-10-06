@@ -8,6 +8,7 @@ extends CharacterBody3D
 @export var _gravityForce = 5
 @onready var camPosCenter = $"../CameraPosCenter"
 @onready var camPosPile = $"../CameraPosCoinPile"
+@onready var camPosGoal = $"../CameraPosGoalRoom"
 @onready var playerModel = $PlayerModel
 @onready var animator = $PlayerModel/AnimationPlayer
 var camTargetNum = 1
@@ -48,6 +49,8 @@ func updateCamera(delta: float):
 	else:
 		if camTargetNum == 2:
 			cameraPosTarget = camPosPile.global_position
+		else:
+			cameraPosTarget = camPosGoal.global_position
 	camera.position = lerp(camera.position, cameraPosTarget, delta*5)
 	
 	camera.look_at(global_position,Vector3.UP)
@@ -58,3 +61,7 @@ func _on_coin_room_area_body_entered(body: Node3D) -> void:
 
 func _on_main_room_area_body_entered(body: Node3D) -> void:
 	camTargetNum=1
+
+
+func _on_goal_room_area_body_entered(body: Node3D) -> void:
+	camTargetNum=3
