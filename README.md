@@ -11,3 +11,5 @@ on controller, Left Stick to move and A to do stuff (it'll still say to press Sp
 you can actually time the slots to win consistently. the goal is to fill the money room with enough money to get to the door
 
 made using Godot, Blender, and paint.net
+
+demo video: https://youtu.be/KpOCh7gk1Is
