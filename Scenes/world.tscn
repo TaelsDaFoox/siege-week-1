@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cs4ecsdbry7k5"]
+[gd_scene load_steps=16 format=4 uid="uid://cs4ecsdbry7k5"]
 
 [ext_resource type="PackedScene" uid="uid://d0ibdpt0gyla1" path="res://Objects/player.tscn" id="1_a02cp"]
 [ext_resource type="Material" uid="uid://ccl05xgib35b4" path="res://Materials/House-LikeCarpet.tres" id="1_go701"]
@@ -6,8 +6,12 @@
 [ext_resource type="Material" uid="uid://dlgufg0yolcv4" path="res://Materials/WoodTile.tres" id="3_fo5ed"]
 [ext_resource type="Material" uid="uid://bpnlwyonvb23q" path="res://Materials/CoinSurface.tres" id="4_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://c6cagy2li8ewg" path="res://Objects/slot_machine.tscn" id="4_8j60k"]
+[ext_resource type="Script" uid="uid://r4noknlfk0m1" path="res://Scenes/coin_pile.gd" id="5_k7acu"]
+[ext_resource type="PackedScene" uid="uid://btx77la6badur" path="res://Scenes/main_ui.tscn" id="7_o06y3"]
 
 [sub_resource type="Environment" id="Environment_a02cp"]
+ambient_light_source = 2
+ambient_light_color = Color(0.36217892, 0.104838826, 0.3482197, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a02cp"]
 size = Vector3(37.53711, 11.262939, 38.95219)
@@ -55,6 +59,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cwob1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k7acu"]
+size = Vector3(25.733715, 6.5543213, 27.592804)
 
 [node name="World" type="Node3D"]
 
@@ -112,14 +119,9 @@ size = Vector3(18.642578, 16.463013, 4.607422)
 material = ExtResource("3_fo5ed")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 0.8026321, 0, 0, 0, 1, -16.70684, 12.418855, -29.259033)
+transform = Transform3D(0.9940068, 0.0877421, 0, -0.10931795, 0.79782176, 0, 0, 0, 1, -14.832335, 12.418855, -29.259033)
 size = Vector3(11.826721, 40.26776, 22.73291)
 material = ExtResource("3_fo5ed")
-
-[node name="CoinPile" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 0.99849766, -0.054793335, 0, 0.054793335, 0.99849766, -0.9099121, -8.05622, -30.964424)
-size = Vector3(19.94873, 11.285217, 16.924194)
-material = ExtResource("4_5ukr8")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 0.9615402, 0.27466413, 0, -0.27466413, 0.9615402, 0, -2.7972815, -35.49674)
@@ -137,7 +139,7 @@ size = Vector3(34.678223, 7.004654, 4.607422)
 material = ExtResource("3_fo5ed")
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 0.8026321, 0, 0, 0, 1, 14.735184, 12.40313, -29.259033)
+transform = Transform3D(0.99959785, -0.02276088, 0, 0.028357798, 0.80230933, 0, 0, 0, 1, 14.735184, 12.40313, -29.259033)
 size = Vector3(11.826721, 40.228577, 22.73291)
 material = ExtResource("3_fo5ed")
 
@@ -151,9 +153,16 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 0.8026321, 0, 8.742278e-08, 0, 
 size = Vector3(41.45166, 26.27209, 4.607422)
 material = ExtResource("3_fo5ed")
 
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5552119, 19.553175, -37.3353)
+radius = 2.809082
+height = 18.04419
+sides = 32
+
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1380599, 1.5, -8.079677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28444147, 2.8626213, -8.079677)
 camera = NodePath("../SecurityCam")
+_gravityForce = 50
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a02cp")
@@ -170,13 +179,6 @@ light_energy = 0.75
 [node name="SecurityCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.21, 0)
 current = true
-
-[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.320076, 0)
-inner_radius = 95.34607
-outer_radius = 56.900414
-sides = 32
-ring_sides = 9
 
 [node name="CameraPosCenter" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.21, 0)
@@ -203,11 +205,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14355469, 4.426544, -1.9587
 shape = SubResource("BoxShape3D_go701")
 
 [node name="SlotMachine" parent="." instance=ExtResource("4_8j60k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2.235777, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.79029, 2.235777, 0)
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8128419, 14.125866, -36.603218)
-amount = 80
+[node name="CoinParticles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6158552, 11.48683, -37.274384)
+emitting = false
+amount = 150
 lifetime = 3.0
 randomness = 1.0
 mesh = SubResource("ArrayMesh_5ukr8")
@@ -221,6 +224,25 @@ particle_flag_rotate_y = true
 spread = 180.0
 angular_velocity_min = -720.0
 angular_velocity_max = 720.0
+linear_accel_min = 32.0
+linear_accel_max = 32.0
+
+[node name="MainUI" parent="." instance=ExtResource("7_o06y3")]
+offset_left = -1.0
+offset_right = -1.0
+
+[node name="CoinPile" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.948)
+script = ExtResource("5_k7acu")
+
+[node name="CoinPile" type="CSGBox3D" parent="CoinPile"]
+transform = Transform3D(1, 0, 0, 0, 0.99849766, -0.054793335, 0, 0.054793335, 0.99849766, -4.597351, -9.520491, -1.1745872)
+size = Vector3(53.015747, 11.285217, 16.924194)
+material = ExtResource("4_5ukr8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CoinPile"]
+transform = Transform3D(1, 0, 0, 0, 0.99849766, -0.054793335, 0, 0.054793335, 0.99849766, 1.9657001, -7.075695, -2.4717922)
+shape = SubResource("BoxShape3D_k7acu")
 
 [connection signal="body_entered" from="MainRoomArea" to="Player" method="_on_main_room_area_body_entered"]
 [connection signal="area_entered" from="CoinRoomArea" to="Player" method="_on_coin_room_area_area_entered"]

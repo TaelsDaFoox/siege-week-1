@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmpcjyao35h1"]
+[gd_scene load_steps=4 format=3 uid="uid://cmpcjyao35h1"]
 
-[ext_resource type="Script" uid="uid://dj8b3yuo1pqlv" path="res://slotmachine.gd" id="1_1siyn"]
+[ext_resource type="Script" uid="uid://dj8b3yuo1pqlv" path="res://slotsMinigame.gd" id="1_1siyn"]
 [ext_resource type="Texture2D" uid="uid://bu0jtynllvnge" path="res://Textures/slot1.png" id="2_275j3"]
+[ext_resource type="FontFile" uid="uid://qw3jaycdbhxv" path="res://fonts/FOT-Rodin Pro B.otf" id="3_4tdmg"]
 
 [node name="SlotMachineUI" type="Control"]
 layout_mode = 3
@@ -13,22 +14,45 @@ grow_vertical = 2
 script = ExtResource("1_1siyn")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.05
 autostart = true
 
 [node name="Slot1" type="Sprite2D" parent="."]
 position = Vector2(220, 180)
-scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_275j3")
 
 [node name="Slot2" type="Sprite2D" parent="."]
 position = Vector2(320, 180)
-scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_275j3")
 
 [node name="Slot3" type="Sprite2D" parent="."]
 position = Vector2(420, 180)
-scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_275j3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = 52.0
+offset_right = 209.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="ResultText" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_4tdmg")
+theme_override_font_sizes/font_size = 32
+text = "Press Space to spin! (Costs 10 coins)"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

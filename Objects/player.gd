@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var camArm = $SpringArm3D
 @export var _camSensitivity: float = 0.1
 @export var _accel: float = 10
+@export var _gravityForce = 5
 @onready var camPosCenter = $"../CameraPosCenter"
 @onready var camPosPile = $"../CameraPosCoinPile"
 @onready var playerModel = $PlayerModel
@@ -22,18 +23,22 @@ func _physics_process(delta: float) -> void:
 	var real_input_dir = Input.get_vector("left", "right", "up", "down", 0.5)
 	if real_input_dir:
 		input_dir = real_input_dir.rotated(-camera.global_rotation.y)
-		dir_vel = move_toward(dir_vel,1,_accel*delta)
+		dir_vel = move_toward(dir_vel,_moveSpeed,_accel*delta)
 	else:
 		dir_vel = move_toward(dir_vel,0,_accel*delta)
 	if dir_vel>0.1:
-		animator.play("Walk",0.2,dir_vel*3)
+		animator.play("Walk",0.2,input_dir.length()*dir_vel*0.25)
 	else:
 		animator.play("Idle",0.2)
 	playerModel.rotation.y=lerp_angle(playerModel.rotation.y,PI/2-input_dir.angle(),delta*10)
-	velocity.x=input_dir.x*_moveSpeed*dir_vel
-	velocity.z=input_dir.y*_moveSpeed*dir_vel
+	velocity.x=input_dir.x*dir_vel
+	velocity.z=input_dir.y*dir_vel
 	move_and_slide()
 	updateCamera(delta)
+	if is_on_floor():
+		velocity.y=0
+	else:
+		velocity.y-=_gravityForce*delta
 	
 #func _unhandled_input(event: InputEvent) -> void:
 
